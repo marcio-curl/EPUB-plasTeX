@@ -6,12 +6,13 @@ from plasTeX.Renderers.PageTemplate import Renderer as _Renderer
 from plasTeX.Config import config
 from plasTeX.ConfigManager import *
 
-
+# Basicamente copiado do renderizador XHTML 
 class WGHTML(_Renderer):
     """ Renderer for XHTML documents """
 
-    # Coloca os arquivos gerados em OEBPS/
+    # Ajusta os parametros de configuracao para que os arquivos sejam gerados em OEBPS
     config['files']['filename'] = 'OEBPS/' + config['files']['filename']
+    config['images']['filenames'] = 'OEBPS/' + config['images']['filenames']
 
     fileExtension = '.html'
     imageTypes = ['.png','.jpg','.jpeg','.gif']
@@ -19,6 +20,7 @@ class WGHTML(_Renderer):
 
     def cleanup(self, document, files, postProcess=None):
         res = _Renderer.cleanup(self, document, files, postProcess=postProcess)
+        # Chamadas para geracao dos arquivos opf e ncx
         self.doOPFFiles(document)
         self.doNCXFiles(document)
         return res
@@ -43,12 +45,18 @@ class WGHTML(_Renderer):
         latexdoc = document.getElementsByTagName('document')[0]
 
         if 'content-opf' in self:
+            
             toc = self['content-opf'](latexdoc)
 #            toc = re.sub(r'\s*/\s*>', r'>', toc)
 #            toc = re.sub(r'(<param)(\s+[^>]*)(\s+name="[^"]*")(\s*>)', r'\1\3\2$
+            # Ajuste das tags solitarias: <tag /> (copiado da funcao anterior)
+            toc = re.compile(r'(<(?:hr|br|img|link|meta)\b.*?)\s*/?\s*(>)', 
+                             re.I|re.S).sub(r'\1 /\2', toc)
+ 
 
-            # Force XHTML syntax on empty tags
+            # Os arquivo content.opf sera gerado no diretorio OEBPS
             f = codecs.open('OEBPS/content.opf', 'w', encoding, errors='xmlcharrefreplace')
+            # Insere o cabecalho xml que nao e colocado corretamente via template
             f.write('<?xml version="1.0" encoding="utf-8" ?>\n')
             f.write(toc)
             f.close()
@@ -61,10 +69,13 @@ class WGHTML(_Renderer):
             toc = self['toc-ncx'](latexdoc)
 #            toc = re.sub(r'\s*/\s*>', r'>', toc)
 #            toc = re.sub(r'(<param)(\s+[^>]*)(\s+name="[^"]*")(\s*>)', r'\1\3\2$
+            toc = re.compile(r'(<(?:item|br|img|link|meta)\b.*?)\s*/?\s*(>)', 
+                             re.I|re.S).sub(r'\1 /\2', toc)
 
             # Force XHTML syntax on empty tags
             f = codecs.open('OEBPS/toc.ncx', 'w', encoding, errors='xmlcharrefreplace')
             f.write('<?xml version="1.0" encoding="utf-8" ?>\n')
+            f.write('<!DOCTYPE ncx PUBLIC "-//NISO//DTD ncx 2005-1//EN"\n\t"http://www.daisy.org/z3986/2005/ncx-2005-1.dtd">\n')
             f.write(toc)
             f.close()
 

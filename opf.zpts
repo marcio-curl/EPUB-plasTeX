@@ -1,13 +1,31 @@
 name: content-opf
-<package xmlns="http://www.idpf.org/2007/opf" xmlns:dc="http://purl.org/dc/elements/1.1/" unique-identifier="bookid" version="2.0">
+<package xmlns="http://www.idpf.org/2007/opf" 
+	 xmlns:dc="http://purl.org/dc/elements/1.1/" 
+	 unique-identifier="bookid" version="2.0">
 <metadata tal:define="metadata self/ownerDocument/userdata">
 <dc:title tal:content="self/title/textContent">Titulo do documento</dc:title>
 <dc:creator tal:condition="text metadata/author" tal:content="metadata/author">Autor</dc:creator>
 <dc:identifier id="bookid">url:http%3A%2F%2Fwww.example.com</dc:identifier>
+<dc:language>pt-BR</dc:language>
 </metadata>
 <manifest>
-<item id="ncx" href="toc.ncx" media-type="text/html" />
+<item id="ncx" href="toc.ncx" media-type="application/x-dtbncx+xml" />
 <item id="content" href="index.html" media-type="application/xhtml+xml" />
+<item id="css" href="styles/styles.css" media-type="text/css" />
+<item id="nav-blank-img" href="icons/blank.gif" media-type="image/gif" />
+<item id="nav-contents-img" href="icons/contents.gif" media-type="image/gif" />
+<item id="nav-index-img" href="icons/index.gif" media-type="image/gif" />
+<item id="nav-loading-img" href="icons/loading.gif" media-type="image/gif" />
+<item id="nav-missing-img" href="icons/missing.png" media-type="image/png" />
+<item id="nav-modules-img" href="icons/modules.gif" media-type="image/gif" />
+<item id="nav-next-img" href="icons/next.gif" media-type="image/gif" />
+<item id="nav-overlay-img" href="icons/overlay.png" media-type="image/png" />
+<item id="nav-prev-img" href="icons/previous.gif" media-type="image/gif" />
+<item id="nav-up-img" href="icons/up.gif" media-type="image/gif" />
+<item id="imgadjust-js" href="icons/imgadjust.js" media-type="text/javascript" />
+<item id="funcAddEvent-js" href="icons/functionAddEvent.js" media-type="text/javascript" />
+<item id="toolTipLib-js" href="icons/toolTipLib.js" media-type="text/javascript" />
+<item id="img-0001" href="images/img-0001.png" media-type="image/png" />
 </manifest>
 
 <spine toc="ncx">
@@ -16,6 +34,7 @@ name: content-opf
 </package>
 
 name: toc-ncx
+type: xml
 <ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1">
 <head>
 <meta name="dtb:uid" content="url:http%3A%2F%2Fwww.example.com" />
@@ -24,13 +43,14 @@ name: toc-ncx
 <meta name="dtb:maxPageNumber" content="0" />
 </head>
 <docTitle>
-<text tal:content="self/title/textContent">Título</text>
+<text tal:content="self/title/textContent">Titulo</text>
 </docTitle>
 <navMap>
 <navPoint id="navpoint-2" playOrder="1">
 <navLabel>
 <text>Conteúdo</text>
 </navLabel>
+<content src="index.html" />
 </navPoint>
 </navMap>
 </ncx>
