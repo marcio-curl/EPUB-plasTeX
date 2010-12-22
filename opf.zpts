@@ -33,24 +33,3 @@ name: content-opf
 </spine>
 </package>
 
-name: toc-ncx
-type: xml
-<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1">
-<head>
-<meta name="dtb:uid" content="url:http%3A%2F%2Fwww.example.com" />
-<meta name="dtb:depth" content="1" />
-<meta name="dtb:totalPageCount" content="0" />
-<meta name="dtb:maxPageNumber" content="0" />
-</head>
-<docTitle>
-<text tal:content="self/title/textContent">Titulo</text>
-</docTitle>
-<navMap>
-<navPoint id="navpoint-2" playOrder="1">
-<navLabel>
-<text>Conteúdo</text>
-</navLabel>
-<content src="index.html" />
-</navPoint>
-</navMap>
-</ncx>

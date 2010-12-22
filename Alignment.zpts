@@ -1,5 +1,6 @@
 name: center centering centerline
-<center tal:content="self">centered text</center>
+<!-- Usar CSS externo... -->
+<div style="text-align: center; margin: 0 auto" tal:content="self">centered text</div>
 
 name: flushleft raggedright leftline
 <div style="text-align:left" tal:content="self">left-aligned text</div>
