@@ -1,7 +1,0 @@
-name: footnote
-<span class="footnote"><sup class="footnotemark" tal:content="self/mark/attributes/num">&#8224;</sup></span>
-
-name: footnotemark
-<a class="footnote" href="#footnotes"><sup class="footnotemark" tal:content="self/mark/attributes/num">&#8224;</sup></a>
-
-name: footnotetext
