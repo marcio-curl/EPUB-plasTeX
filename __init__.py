@@ -11,8 +11,8 @@ class WGHTML(_Renderer):
     """ Renderer for XHTML documents """
 
     # Ajusta os parametros de configuracao para que os arquivos sejam gerados em OEBPS
-    config['files']['filename'] = 'OEBPS/' + config['files']['filename']
-    config['images']['filenames'] = 'OEBPS/' + config['images']['filenames']
+    config['files']['filename'] = 'oebps/' + config['files']['filename']
+    config['images']['filenames'] = 'oebps/' + config['images']['filenames']
     # Verificar as chamadas src="OEBPS/OEBPS/imagem"
     config['images']['base-url'] = '..'
 
@@ -57,7 +57,7 @@ class WGHTML(_Renderer):
  
 
             # Os arquivo content.opf sera gerado no diretorio OEBPS
-            f = codecs.open('OEBPS/content.opf', 'w', encoding, errors='xmlcharrefreplace')
+            f = codecs.open('oebps/content.opf', 'w', encoding, errors='xmlcharrefreplace')
             # Insere o cabecalho xml que nao e colocado corretamente via template
             f.write('<?xml version="1.0" encoding="utf-8" ?>\n')
             f.write(toc)
@@ -75,7 +75,7 @@ class WGHTML(_Renderer):
                              re.I|re.S).sub(r'\1 /\2', toc)
 
             # Force XHTML syntax on empty tags
-            f = codecs.open('OEBPS/toc.ncx', 'w', encoding, errors='xmlcharrefreplace')
+            f = codecs.open('oebps/toc.ncx', 'w', encoding, errors='xmlcharrefreplace')
             f.write('<?xml version="1.0" encoding="utf-8" ?>\n')
             f.write('<!DOCTYPE ncx PUBLIC "-//NISO//DTD ncx 2005-1//EN"\n\t"http://www.daisy.org/z3986/2005/ncx-2005-1.dtd">\n')
             f.write(toc)
