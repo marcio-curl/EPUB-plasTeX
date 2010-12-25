@@ -13,6 +13,8 @@ class WGHTML(_Renderer):
     # Ajusta os parametros de configuracao para que os arquivos sejam gerados em OEBPS
     config['files']['filename'] = 'OEBPS/' + config['files']['filename']
     config['images']['filenames'] = 'OEBPS/' + config['images']['filenames']
+    # Verificar as chamadas src="OEBPS/OEBPS/imagem"
+    config['images']['base-url'] = '..'
 
     fileExtension = '.html'
     imageTypes = ['.png','.jpg','.jpeg','.gif']
@@ -79,4 +81,4 @@ class WGHTML(_Renderer):
             f.write(toc)
             f.close()
 
-Renderer = WGHTML 
+Renderer = WGHTML
