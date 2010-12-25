@@ -81,4 +81,4 @@ class WGHTML(_Renderer):
             f.write(toc)
             f.close()
 
-Renderer = WGHTML 
+Renderer = WGHTML
