@@ -1,3 +1,4 @@
+# Ainda não funciona no \author
 name: footnote
 <span class="footnote"><sup class="footnotemark" tal:content="self/content">&#8224</sup></span>
 
