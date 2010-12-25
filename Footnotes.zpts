@@ -1,6 +1,8 @@
+# Ainda não funciona no \author
 name: footnote
-<span class="footnote"><sup class="footnotemark" tal:content="self/mark/attributes/num">&#8224;</sup></span>
+<span class="footnote"><sup class="footnotemark" tal:content="self/content">&#8224</sup></span>
 
 name: footnotemark
+<sup class="footnotemark" tal:content="self/mark/attributes/num">&#8224;</sup>
 
 name: footnotetext
