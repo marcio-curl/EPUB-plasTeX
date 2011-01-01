@@ -25,7 +25,6 @@ name: content-opf
 <item id="imgadjust-js" href="icons/imgadjust.js" media-type="text/javascript" />
 <item id="funcAddEvent-js" href="icons/functionAddEvent.js" media-type="text/javascript" />
 <item id="toolTipLib-js" href="icons/toolTipLib.js" media-type="text/javascript" />
-<item id="img-0001" href="images/img-0001.png" media-type="image/png" />
 </manifest>
 
 <spine toc="ncx">

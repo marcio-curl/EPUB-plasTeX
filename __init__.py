@@ -46,8 +46,7 @@ class WGHTML(_Renderer):
         """ Gerador do arquivo content.opf """
         latexdoc = document.getElementsByTagName('document')[0]
 
-        if 'content-opf' in self:
-            
+        if 'content-opf' in self:            
             toc = self['content-opf'](latexdoc)
 #            toc = re.sub(r'\s*/\s*>', r'>', toc)
 #            toc = re.sub(r'(<param)(\s+[^>]*)(\s+name="[^"]*")(\s*>)', r'\1\3\2$
@@ -56,10 +55,21 @@ class WGHTML(_Renderer):
                              re.I|re.S).sub(r'\1 /\2', toc)
  
 
-            # Os arquivo content.opf sera gerado no diretorio OEBPS
+            # O arquivo content.opf sera gerado no diretorio OEBPS
             f = codecs.open('OEBPS/content.opf', 'w', encoding, errors='xmlcharrefreplace')
             # Insere o cabecalho xml que nao e colocado corretamente via template
             f.write('<?xml version="1.0" encoding="utf-8" ?>\n')
+            itemopf = ''
+            for root, dirs, arquivos in os.walk('OEBPS/images'):
+                for nome in arquivos:
+                    href = os.path.join(re.sub('OEBPS/?', '', root), nome)
+                    # Nao funciona se tivermos dois arquivos com o mesmo nome...
+                    itemid = re.sub('\..*$', '', nome)
+                    mediaType = "image/png"
+                    
+                    itemopf += '<item id="%s" href="%s" media-type="%s"></item>\n' % (itemid, href, mediaType)
+
+            toc = re.sub('</manifest>', itemopf + "</manifest>", toc)
             f.write(toc)
             f.close()
 
@@ -78,6 +88,7 @@ class WGHTML(_Renderer):
             f = codecs.open('OEBPS/toc.ncx', 'w', encoding, errors='xmlcharrefreplace')
             f.write('<?xml version="1.0" encoding="utf-8" ?>\n')
             f.write('<!DOCTYPE ncx PUBLIC "-//NISO//DTD ncx 2005-1//EN"\n\t"http://www.daisy.org/z3986/2005/ncx-2005-1.dtd">\n')
+    
             f.write(toc)
             f.close()
 
