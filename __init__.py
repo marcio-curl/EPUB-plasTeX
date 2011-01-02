@@ -11,10 +11,11 @@ class WGHTML(_Renderer):
     """ Renderer for XHTML documents """
 
     # Ajusta os parametros de configuracao para que os arquivos sejam gerados em OEBPS
-    config['files']['filename'] = 'OEBPS/' + config['files']['filename']
+    config['files']['filename'] = 'OEBPS/index OEBPS/[$id, sect$num(4)]' # deixar configuravel...
     config['images']['filenames'] = 'OEBPS/' + config['images']['filenames']
     # Verificar as chamadas src="OEBPS/OEBPS/imagem"
     config['images']['base-url'] = '..'
+    config['document']['base-url'] = '..'
 
     fileExtension = '.html'
     imageTypes = ['.png','.jpg','.jpeg','.gif']
