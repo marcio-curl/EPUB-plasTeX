@@ -11,11 +11,17 @@ type:xml
 <text tal:content="self/title/textContent">Titulo</text>
 </docTitle>
 <navMap>
-<navPoint id="navpoint-2" playOrder="1">
+<navPoint tal:condition="not:self/tableofcontents" id="navpoint" playOrder="1">
 <navLabel>
 <text>Conteúdo</text>
 </navLabel>
 <content src="index.html" />
+</navPoint>
+<navPoint tal:repeat="section self/tableofcontents" tal:attributes="id string:navpoint-${repeat/section/index}; playOrder repeat/section/number">
+<navLabel>
+<text tal:content="section/fullTocEntry">Conteúdo</text>
+</navLabel>
+<content tal:attributes="src section/url" />
 </navPoint>
 </navMap>
 </ncx>

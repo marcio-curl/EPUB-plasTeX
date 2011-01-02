@@ -11,11 +11,11 @@ class WGHTML(_Renderer):
     """ Renderer for XHTML documents """
 
     # Ajusta os parametros de configuracao para que os arquivos sejam gerados em OEBPS
-    config['files']['filename'] = 'OEBPS/index OEBPS/[$id, sect$num(4)]' # deixar configuravel...
+    #config['files']['filename'] = 'OEBPS/' + config['files']['filename']
     config['images']['filenames'] = 'OEBPS/' + config['images']['filenames']
     # Verificar as chamadas src="OEBPS/OEBPS/imagem"
     config['images']['base-url'] = '..'
-    config['document']['base-url'] = '..'
+    #config['document']['base-url'] = '../OEBPS/'
 
     fileExtension = '.html'
     imageTypes = ['.png','.jpg','.jpeg','.gif']
@@ -70,7 +70,20 @@ class WGHTML(_Renderer):
                     
                     itemopf += '<item id="%s" href="%s" media-type="%s"></item>\n' % (itemid, href, mediaType)
 
+            # Busca dos arquivos das secoes
+            spineopf = ''
+            for arq in os.listdir('.'): # Juntar ao loop anterior
+                if re.match('sect\d{4}.html', arq): # Nao funciona para um diretorio .html
+                    os.rename(arq, 'OEBPS/' + arq)
+                    itemid = re.sub('\..*$', '', arq)
+                    itemopf += '<item id="%s" href="%s" media-type="application/xhtml+xml"></item>\n' % (itemid, arq)
+                    spineopf += '<itemref idref="%s" />\n' % (itemid)
+
+            # Move o arquivo index.html para o diretorio OEBPS/
+            os.rename('index.html', 'OEBPS/index.html')
+
             toc = re.sub('</manifest>', itemopf + "</manifest>", toc)
+            toc = re.sub('</spine>', spineopf + "</spine>", toc)
             f.write(toc)
             f.close()
 
