@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 import sys, os, re, codecs, plasTeX
 from plasTeX.Renderers.PageTemplate import Renderer as _Renderer
@@ -10,12 +11,12 @@ from plasTeX.ConfigManager import *
 class WGHTML(_Renderer):
     """ Renderer for XHTML documents """
 
-    # Ajusta os parametros de configuracao para que os arquivos sejam gerados em OEBPS
-    #config['files']['filename'] = 'OEBPS/' + config['files']['filename']
+    # Diretório de saída original
+    # Ajusta os parametros de configuração para que os arquivos sejam gerados em OEBPS/
+    config['files']['directory'] = 'OEBPS/' + config['files']['directory']
     config['images']['filenames'] = 'OEBPS/' + config['images']['filenames']
-    # Verificar as chamadas src="OEBPS/OEBPS/imagem"
+    # Consertar as URLs OEBPS/images/img-????.png...
     config['images']['base-url'] = '..'
-    #config['document']['base-url'] = '../OEBPS/'
 
     fileExtension = '.html'
     imageTypes = ['.png','.jpg','.jpeg','.gif']
