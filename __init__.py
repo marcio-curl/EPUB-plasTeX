@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import sys, os, re, codecs, plasTeX
+import sys, os, re, codecs, mimetypes, plasTeX
 from plasTeX.Renderers.PageTemplate import Renderer as _Renderer
 
 from plasTeX.Config import config
@@ -17,6 +17,8 @@ class WGHTML(_Renderer):
     config['images']['filenames'] = 'OEBPS/' + config['images']['filenames']
     # Consertar as URLs OEBPS/images/img-????.png...
     config['images']['base-url'] = '..'
+
+    sys.path.append("/soc/home/marcio/plastex/WGHTML/");
 
     fileExtension = '.html'
     imageTypes = ['.png','.jpg','.jpeg','.gif']
@@ -61,27 +63,38 @@ class WGHTML(_Renderer):
             f = codecs.open('OEBPS/content.opf', 'w', encoding, errors='xmlcharrefreplace')
             # Insere o cabecalho xml que nao e colocado corretamente via template
             f.write('<?xml version="1.0" encoding="utf-8" ?>\n')
+
+            # Adiciona o mimetype do arquivo ncx
+            mimetypes.add_type('application/x-dtbncx+xml', '.ncx')
+            
             itemopf = ''
-            for root, dirs, arquivos in os.walk('OEBPS/images'):
-                for nome in arquivos:
-                    href = os.path.join(re.sub('OEBPS/?', '', root), nome)
-                    # Nao funciona se tivermos dois arquivos com o mesmo nome...
-                    itemid = re.sub('\..*$', '', nome)
-                    mediaType = "image/png"
+            spineopf = '<itemref idref="index" />\n' # index.html
+            for root, dirs, arquivos in os.walk('OEBPS/'):
+                for nomeArquivo in arquivos:
+                    if (nomeArquivo == 'content.opf'):
+                        continue
+                    
+                    href = os.path.join(re.sub('OEBPS/?', '', root), nomeArquivo)
+                    # As / são substituídas por - no id
+                    itemid = re.sub('\..*$', '', re.sub('/', '-', href))
+                    mediaType = mimetypes.guess_type(nomeArquivo)[0]
                     
                     itemopf += '<item id="%s" href="%s" media-type="%s"></item>\n' % (itemid, href, mediaType)
+                    if re.match('sect\d{4}.html', href): # Nao funciona para um diretorio .html
+                        spineopf += '<itemref idref="%s" />\n' % (itemid)
+                        
 
             # Busca dos arquivos das secoes
-            spineopf = ''
-            for arq in os.listdir('.'): # Juntar ao loop anterior
-                if re.match('sect\d{4}.html', arq): # Nao funciona para um diretorio .html
-                    os.rename(arq, 'OEBPS/' + arq)
-                    itemid = re.sub('\..*$', '', arq)
-                    itemopf += '<item id="%s" href="%s" media-type="application/xhtml+xml"></item>\n' % (itemid, arq)
-                    spineopf += '<itemref idref="%s" />\n' % (itemid)
+#            spineopf = ''
+#            for arq in os.listdir('.'): # Juntar ao loop anterior
+#                if re.match('sect\d{4}.html', arq): # Nao funciona para um diretorio .html
+#                    os.rename(arq, 'OEBPS/' + arq)
+#                    itemid = re.sub('\..*$', '', arq)
+#                    itemopf += '<item id="%s" href="%s" media-type="application/xhtml+xml"></item>\n' % (itemid, arq)
+#                    spineopf += '<itemref idref="%s" />\n' % (itemid)
 
             # Move o arquivo index.html para o diretorio OEBPS/
-            os.rename('index.html', 'OEBPS/index.html')
+#            os.rename('index.html', 'OEBPS/index.html')
 
             toc = re.sub('</manifest>', itemopf + "</manifest>", toc)
             toc = re.sub('</spine>', spineopf + "</spine>", toc)
