@@ -11,7 +11,7 @@ name: content-opf
 <manifest>
 </manifest>
 
-<spine toc="ncx">
+<spine toc="toc">
 </spine>
 </package>
 
