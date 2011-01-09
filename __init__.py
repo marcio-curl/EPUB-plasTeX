@@ -66,9 +66,14 @@ class WGHTML(_Renderer):
             os.rename('index.html', 'OEBPS/index.html')
 
             # Move os arquivos das seções
+            spineopf = '<itemref idref="index" />\n' # index.html
             for arq in os.listdir('.'):
                 if re.match('sect\d{4}.html', arq): # Nao funciona para um diretorio .html
                     os.rename(arq, 'OEBPS/' + arq)
+                    spineopf += '<itemref idref="%s" />\n' % (re.sub('\..*$', '', arq))
+
+            toc = re.sub('</spine>', spineopf + "</spine>", toc)
+                        
 
             # Adiciona o mimetype do arquivo ncx
             mimetypes.add_type('application/x-dtbncx+xml', '.ncx')
@@ -77,7 +82,6 @@ class WGHTML(_Renderer):
             mimetypes.add_type('application/xhtml+xml', '.html')
 
             itemopf = ''
-            spineopf = '<itemref idref="index" />\n' # index.html
             for root, dirs, arquivos in os.walk('OEBPS/'):
                 for nomeArquivo in arquivos:
                     if (nomeArquivo == 'content.opf'):
@@ -88,13 +92,9 @@ class WGHTML(_Renderer):
                     itemid = re.sub('\..*$', '', re.sub('/', '-', href))
                     mediaType = mimetypes.guess_type(nomeArquivo)[0]
 
-                    if re.match('sect\d{4}.html', href): # Nao funciona para um diretorio .html
-                        spineopf += '<itemref idref="%s" />\n' % (itemid)
-
                     itemopf += '<item id="%s" href="%s" media-type="%s"></item>\n' % (itemid, href, mediaType)
     
             toc = re.sub('</manifest>', itemopf + "</manifest>", toc)
-            toc = re.sub('</spine>', spineopf + "</spine>", toc)
             f.write(toc)
             f.close()
 
