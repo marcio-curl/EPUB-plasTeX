@@ -63,12 +63,12 @@ class WGHTML(_Renderer):
 
 
             # Move o arquivo index.html para o diretorio OEBPS/
-            os.rename('index.html', 'OEBPS/index.html')
+#            os.rename('index.html', 'OEBPS/index.html')
 
             # Move os arquivos das seções
             spineopf = '<itemref idref="index" />\n' # index.html
             for arq in os.listdir('.'):
-                if re.match('sect\d{4}.html', arq): # Nao funciona para um diretorio .html
+                if re.match('.*\.html', arq): # Nao funciona para um diretorio .html
                     os.rename(arq, 'OEBPS/' + arq)
                     spineopf += '<itemref idref="%s" />\n' % (re.sub('\..*$', '', arq))
 
