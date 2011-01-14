@@ -62,9 +62,6 @@ class WGHTML(_Renderer):
             f.write('<?xml version="1.0" encoding="utf-8" ?>\n')
 
 
-            # Move o arquivo index.html para o diretorio OEBPS/
-#            os.rename('index.html', 'OEBPS/index.html')
-
             # Move os arquivos das seções
             spineopf = '<itemref idref="index" />\n' # index.html
             for arq in os.listdir('.'):
