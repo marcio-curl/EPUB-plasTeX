@@ -9,6 +9,7 @@ name: math ensuremath
                                      height:${self/image/height/px}" class="math gen" /></object>
 
 name: displaymath equation equation*
+type: xml
 <table class="equation" width="100%" tal:attributes="id self/id" cellspacing="0" cellpadding="7">
 <tr>
     <td tal:condition="self/ownerDocument/context/packages/documentclass/fleqn" class="fleqn"></td>
@@ -26,7 +27,7 @@ name: displaymath equation equation*
 </table>
 
 name: eqnarray eqnarray* align align* gather gather* falign falign* \
-      multiline multiline* alignat alignat* split
+      multiline multiline* alignat alignat* split equation
 type: xml
 <table class="eqnarray" cellspacing="0" cellpadding="7" width="100%"
        tal:attributes="id self/id">
