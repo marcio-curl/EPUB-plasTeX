@@ -5,59 +5,11 @@
 <meta name="generator" content="plasTeX" />
 <meta http-equiv="content-type" 
       tal:attributes="content string:text/html;; charset=${config/files/output-encoding}" />
-<title tal:condition="python:path('self/level') &gt; -10" tal:content="stripped string:${links/document/title}: ${self/title}">Morbi metus pede, imperdiet vitae</title>
-<title tal:condition="python:path('self/level') &lt;= -10" tal:content="stripped self/title">Morbi metus pede, imperdiet vitae</title>
 
-<link rel="stylesheet" href="styles/styles.css" />
+<link rel="stylesheet" href="css/estilo.css" />
 </head>
 
 <body>
-
-<div tal:condition="python:path('self/level') &gt; -10" class="breadcrumbs">
-<span tal:repeat="crumb links/breadcrumbs">
-<span tal:condition="not:repeat/crumb/end">
-<a href="." tal:attributes="href crumb/url" tal:content="crumb/title">Parent Section</a> <b>:</b>
-</span>
-<span tal:condition="repeat/crumb/end">
-<b class="current" tal:content="crumb/title">Current Section</b>
-</span>
-</span>
-<hr />
-</div>
-
-<div tal:content="self">File contents</div>
-
-<div tal:condition="self/tableofcontents" tal:attributes="class string:contents ${self/nodeName}-contents"><!--<strong>Subsections</strong>-->
-<ul>
-<li tal:repeat="section self/tableofcontents"><a href="." tal:attributes="href section/url" tal:content="section/fullTocEntry">Aliquam est. Aliquam fringilla pede</a>
-   <ul tal:condition="section/tableofcontents">
-   <li tal:repeat="subsection section/tableofcontents"><a href="." tal:attributes="href subsection/url" tal:content="subsection/fullTocEntry"></a>
-       <ul tal:condition="subsection/tableofcontents">
-       <li tal:repeat="subsubsection subsection/tableofcontents"><a href="." tal:attributes="href subsubsection/url" tal:content="subsubsection/fullTocEntry"></a>
-           <ul tal:condition="subsubsection/tableofcontents">
-           <li tal:repeat="paragraph subsubsection/tableofcontents"><a href="." tal:attributes="href paragraph/url" tal:content="paragraph/fullTocEntry"></a>
-               <ul tal:condition="paragraph/tableofcontents">
-               <li tal:repeat="subparagraph paragraph/tableofcontents"><a href="." tal:attributes="href subparagraph/url" tal:content="subparagraph/fullTocEntry"></a></li>
-               </ul>
-           </li>
-           </ul>
-       </li>
-       </ul>
-   </li>
-   </ul>
-</li>
-<li tal:replace="nothing"><a href=".">Maecenas id purus</a></li>
-<li tal:replace="nothing"><a href=".">Duis et eros</a></li>
-<li tal:replace="nothing"><a href=".">Duis est</a></li>
-</ul>
-</div>
-
-<div id="footnotes" tal:condition="self/footnotes">
-<p><b>Footnotes</b></p>
-<ol>
-<li tal:repeat="footnote self/footnotes" tal:content="footnote" tal:attributes="id footnote/id">footnote text</li>
-</ol>
-</div>
 
 </body>
 </html>
