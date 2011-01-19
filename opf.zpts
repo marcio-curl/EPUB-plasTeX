@@ -5,10 +5,11 @@ name: content-opf
 <metadata tal:define="metadata self/ownerDocument/userdata">
 <dc:title tal:content="self/title/textContent">Titulo do documento</dc:title>
 <dc:creator tal:condition="text metadata/author" tal:content="metadata/author">Autor</dc:creator>
-<dc:identifier id="bookid">url:http%3A%2F%2Fwww.example.com</dc:identifier>
+<dc:identifier id="bookid" tal:content="self/userdata/bookid">url:http%3A%2F%2Fwww.example.com</dc:identifier>
 <dc:language>pt-BR</dc:language>
 </metadata>
-<manifest>
+<manifest >
+<item tal:content="key" />
 </manifest>
 
 <spine toc="toc">

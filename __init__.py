@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import sys, os, re, codecs, shutil, mimetypes, plasTeX
+import sys, os, re, codecs, shutil, mimetypes, uuid, plasTeX
 from plasTeX.Renderers.PageTemplate import Renderer as _Renderer
 
 from plasTeX.Config import config
@@ -24,13 +24,18 @@ class WGHTML(_Renderer):
 
     def cleanup(self, document, files, postProcess=None):        
         res = _Renderer.cleanup(self, document, files, postProcess=postProcess)
-        
+
         # Move os arquivos para o diretório OEBPS/
         if os.path.isdir("images/"): # Modificar para o template de configuração             
             shutil.move("images/", 'OEBPS/images/')
             
         for arq in files:
             shutil.move(arq, 'OEBPS/')
+
+        # Cria uma entrada para o bookid com um UUID aleatório.
+        document.getElementsByTagName('document')[0].setUserData('bookid', 'urn:uuid:%s' % uuid.uuid4())
+
+        document.getElementsByTagName('document')[0].setUserData('weigay', {'wg1': 10, 'wg2': 20})
 
         # Chamadas para geração dos arquivos opf e ncx
         self.doOPFFiles(document)
