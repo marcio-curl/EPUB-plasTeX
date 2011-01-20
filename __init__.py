@@ -32,14 +32,42 @@ class WGHTML(_Renderer):
         for arq in files:
             shutil.move(arq, 'OEBPS/')
 
-        # Cria uma entrada para o bookid com um UUID aleatório.
-        document.getElementsByTagName('document')[0].setUserData('bookid', 'urn:uuid:%s' % uuid.uuid4())
+        latexdoc = document.getElementsByTagName('document')[0]
 
-        document.getElementsByTagName('document')[0].setUserData('weigay', {'wg1': 10, 'wg2': 20})
+        # Cria uma entrada para o bookid com um UUID aleatório.
+        latexdoc.setUserData('bookid', 'urn:uuid:%s' % uuid.uuid4())
+
+        # Adiciona o mimetype do arquivo ncx
+        if not mimetypes.types_map.has_key('.ncx'):
+            mimetypes.add_type('application/x-dtbncx+xml', '.ncx')
+
+        # Muda os aquivos .html para XHTML
+        mimetypes.add_type('application/xhtml+xml', '.html')
+
+        listaArquivos = dict() # Lista dos arquivos no manifest
+        spine = [] # Lista de ids no spine (poderiamos trocar por uma função que verifica quais tipos de seção geram arquivos e incluir no userdata deles).
+        for root, dirs, arquivos in os.walk('OEBPS/'):
+            for nomeArquivo in arquivos:
+                if (nomeArquivo == 'content.opf'):
+                    continue
+
+                href = os.path.join(re.sub('OEBPS/?', '', root), nomeArquivo)
+                # As / são substituídas por - no id
+                itemid = re.sub('\..*$', '', re.sub('/', '-', href))
+                mediaType = mimetypes.guess_type(nomeArquivo)[0]
+
+                # Os arquivos html são incluídos no spine
+                if re.match('.*\.html', nomeArquivo):
+                    spine.append(itemid)
+
+                listaArquivos[itemid] = {'href': href, 'mediaType': mediaType}
+            
+        latexdoc.setUserData('listaArqs', listaArquivos)
+        latexdoc.setUserData('spine', spine)
 
         # Chamadas para geração dos arquivos opf e ncx
-        self.doOPFFiles(document)
-        self.doNCXFiles(document)
+        self.doOPFFiles(latexdoc)
+        self.doNCXFiles(latexdoc)
         return res
 
 
@@ -58,16 +86,14 @@ class WGHTML(_Renderer):
 
         return s
     
-    def doOPFFiles(self, document, encoding='UTF-8'):
+    def doOPFFiles(self, latexdoc, encoding='UTF-8'):
         """ Gerador do arquivo content.opf """
-        latexdoc = document.getElementsByTagName('document')[0]
 
         if 'content-opf' in self:            
             toc = self['content-opf'](latexdoc)
 
-            # Ajuste das tags solitárias: <tag /> (copiado da função anterior)
-            toc = re.compile(r'(<(?:hr|br|img|link|meta)\b.*?)\s*/?\s*(>)', 
-                             re.I|re.S).sub(r'\1 /\2', toc)
+            # Ajuste das tags solitárias
+            toc = re.compile(r'></(?:item|itemref)>', re.I|re.S).sub(r' />\n', toc)
  
 
             # O arquivo content.opf será gerado no diretório OEBPS/
@@ -109,9 +135,8 @@ class WGHTML(_Renderer):
             f.write(toc)
             f.close()
 
-    def doNCXFiles(self, document, encoding='UTF-8'):
+    def doNCXFiles(self, latexdoc, encoding='UTF-8'):
         """ Gerador do arquivo toc.ncx """
-        latexdoc = document.getElementsByTagName('document')[0]
 
         if 'toc-ncx' in self:
             toc = self['toc-ncx'](latexdoc)

@@ -8,11 +8,13 @@ name: content-opf
 <dc:identifier id="bookid" tal:content="self/userdata/bookid">url:http%3A%2F%2Fwww.example.com</dc:identifier>
 <dc:language>pt-BR</dc:language>
 </metadata>
-<manifest >
-<item tal:content="key" />
+<manifest>
+<item tal:repeat="item python:self.userdata['listaArqs'].keys()" tal:attributes="id item; href python:self.userdata['listaArqs'][item]['href']; media-type python:self.userdata['listaArqs'][item]['mediaType']"/>
 </manifest>
 
 <spine toc="toc">
+<itemref idref="cover" linear="no" />
+<itemref tal:repeat="item self/userdata/spine" tal:attributes="idref item" />
 </spine>
 </package>
 
