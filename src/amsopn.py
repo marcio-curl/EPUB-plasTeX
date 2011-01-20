@@ -1,0 +1,2 @@
+class DeclareMathOperator(Command):
+    pass
