@@ -9,7 +9,7 @@ name: content-opf
 <dc:language>pt-BR</dc:language>
 </metadata>
 <manifest>
-<item tal:repeat="item python:self.userdata['listaArqs'].keys()" tal:attributes="id item; href python:self.userdata['listaArqs'][item]['href']; media-type python:self.userdata['listaArqs'][item]['mediaType']"/>
+<item tal:define="listaArqs python:self.userdata['listaArqs']" tal:repeat="item python:listaArqs.keys()" tal:attributes="id item; href python:listaArqs[item]['href']; media-type python:listaArqs[item]['mediaType']"/>
 </manifest>
 
 <spine toc="toc">
@@ -17,4 +17,3 @@ name: content-opf
 <itemref tal:repeat="item self/userdata/spine" tal:attributes="idref item" />
 </spine>
 </package>
-

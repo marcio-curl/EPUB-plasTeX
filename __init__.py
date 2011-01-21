@@ -13,9 +13,9 @@ class WGHTML(_Renderer):
 
 #    config['files']['directory'] = 'OEBPS/' + config['files']['directory']
     # Ajusta os parametros de configuração para que os arquivos sejam gerados em OEBPS/
-#    config['images']['filenames'] = 'OEBPS/' + config['images']['filenames']
+    config['images']['filenames'] = 'OEBPS/' + config['images']['filenames']
     # "Conserta" as URLs OEBPS/images/img-????.png
-#    config['images']['base-url'] = '..'
+    config['images']['base-url'] = '..'
 
     # Extensões de arquivos utilizadas
     fileExtension = '.html'
@@ -25,10 +25,7 @@ class WGHTML(_Renderer):
     def cleanup(self, document, files, postProcess=None):        
         res = _Renderer.cleanup(self, document, files, postProcess=postProcess)
 
-        # Move os arquivos para o diretório OEBPS/
-        if os.path.isdir("images/"): # Modificar para o template de configuração             
-            shutil.move("images/", 'OEBPS/images/')
-            
+        # Move os arquivos de conteúdo para OEBPS/
         for arq in files:
             shutil.move(arq, 'OEBPS/')
 

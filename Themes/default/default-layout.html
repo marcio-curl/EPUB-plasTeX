@@ -6,10 +6,12 @@
 <meta http-equiv="content-type" 
       tal:attributes="content string:text/html;; charset=${config/files/output-encoding}" />
 
+<title tal:content="self/title"></title>
+             
 <link rel="stylesheet" href="css/estilo.css" />
 </head>
 
 <body>
-
+<div class="texto" tal:content="self"></div>
 </body>
 </html>
