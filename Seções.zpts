@@ -1,0 +1,2 @@
+name: document
+<p tal:replace="self"></p>
