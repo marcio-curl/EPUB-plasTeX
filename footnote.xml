@@ -1,0 +1,1 @@
+<a class="footnote" tal:attributes="href string:#${self/id}"><sup class="footnotemark" tal:condition="self/mark/attributes/num" tal:content="self/mark/attributes/num">&#8224;</sup><sup class="footnotemark" tal:condition="not:self/mark/attributes/num">&#8224;</sup></a>
