@@ -1,2 +1,0 @@
-name: quote quotation
-<blockquote tal:content="self"></blockquote>
