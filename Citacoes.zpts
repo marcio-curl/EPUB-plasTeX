@@ -1,8 +1,0 @@
-name: quote
-<div class="quote" tal:content="self"></div>
-
-name: quotation
-<div class="quotation" tal:content="self"></div>
-
-name: verse
-<div class="verse" tal:content="self"></div>

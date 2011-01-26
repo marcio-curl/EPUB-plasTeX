@@ -1,0 +1,3 @@
+<div class="imagem">
+<img tal:attributes="src self/image/url; alt self/source; style self/style/inline" />
+</div>
