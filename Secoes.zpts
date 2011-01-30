@@ -1,2 +1,26 @@
 name: document
 <p tal:replace="self"></p>
+
+name: part chapter section
+<h1 tal:attributes="id self/id" tal:content="self/fullTitle">Título</h1>
+<p tal:replace="self"></p>
+
+
+name: subsection
+<h2 tal:attributes="id self/id" tal:content="self/fullTitle">Título</h2>
+<p tal:replace="self"></p>
+
+
+name: subsubsection
+<h3 tal:attributes="id self/id" tal:content="self/fullTitle">Título</h3>
+<p tal:replace="self"></p>
+
+
+name: paragraph
+<h4 tal:attributes="id self/id" tal:content="self/fullTitle">Título</h4>
+<p tal:replace="self"></p>
+
+
+name: subparagraph
+<h5 tal:attributes="id self/id" tal:content="self/fullTitle">Título</h5>
+<p tal:replace="self"></p>
