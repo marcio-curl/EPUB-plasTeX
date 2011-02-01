@@ -1,1 +1,1 @@
-<span class="mbox" tal:attributes="self"></self>
+<span class="mbox" tal:content="self"></span>
