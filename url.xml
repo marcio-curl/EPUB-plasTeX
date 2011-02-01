@@ -1,1 +1,0 @@
-<a tal:attributes="href self/attributes/url" tal:content="self/attributes/url"></a>

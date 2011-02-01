@@ -1,0 +1,5 @@
+name: href
+<a tal:attributes="href self/attributes/url" tal:content="self"></a>
+
+name: url
+<a tal:attributes="href self/attributes/url" tal:content="self/attributes/url"></a>
