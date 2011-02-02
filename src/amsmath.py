@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
-from plasTeX import Command, Environment
+from plasTeX import Command, Environment, sourceChildren
 from plasTeX.Base.LaTeX.Arrays import Array
-from plasTeX.Base.LaTeX.Math import EqnarrayStar, equation, eqnarray
+from plasTeX.Base.LaTeX.Math import EqnarrayStar, equation, eqnarray, MathEnvironment
 #### Imports Added by Tim ####
 from plasTeX.Base.LaTeX.Math import math
 
@@ -103,5 +103,14 @@ class dddot(math):
 class ddddot(math):
     pass
 
-class equation(_AMSEquation):
-    pass
+# "Transforma" o equation num displaymath
+class equation(equation):
+    blockType = True
+    @property
+    def source(self):
+        if self.hasChildNodes():
+            return r'\[ %s \]' % sourceChildren(self)
+        if self.macroMode == Command.MODE_END:
+            return r'\]'
+        return r'\['
+
