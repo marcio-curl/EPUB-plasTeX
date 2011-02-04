@@ -13,7 +13,9 @@ name: content-opf
 </manifest>
 
 <spine toc="toc">
+<!--
 <itemref idref="cover" linear="no" />
+-->
 <itemref tal:repeat="item self/userdata/spine" tal:attributes="idref item" />
 </spine>
 </package>

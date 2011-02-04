@@ -16,3 +16,7 @@ h1.titulo, .autor, .data {
 em > em {
     font-style: normal;
 }
+
+#footnotes {
+	display: oeb-page-foot;
+}

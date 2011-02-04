@@ -40,6 +40,13 @@ class WGHTML(_Renderer):
         # Muda os aquivos .html para XHTML
         mimetypes.add_type('application/xhtml+xml', '.html')
 
+        # Mimetype para fontes OpenType
+        if not mimetypes.types_map.has_key('.otf'):
+            mimetypes.add_type('application/vnd.ms-opentype', '.otf')
+
+        # Gera o arquivo ncx
+        self.doNCXFiles(latexdoc)
+
         listaArquivos = dict() # Lista dos arquivos no manifest
         spine = [] # Lista de ids no spine (poderiamos trocar por uma função que verifica quais tipos de seção geram arquivos e incluir no userdata deles).
         for root, dirs, arquivos in os.walk('OEBPS/'):
@@ -61,9 +68,8 @@ class WGHTML(_Renderer):
         latexdoc.setUserData('listaArqs', listaArquivos)
         latexdoc.setUserData('spine', spine)
 
-        # Chamadas para geração dos arquivos opf e ncx
+        # Chamadas para geração do arquivo opf
         self.doOPFFiles(latexdoc)
-        self.doNCXFiles(latexdoc)
         return res
 
     def processFileContent(self, document, s):

@@ -1,8 +1,8 @@
 name: quote
-<blockquote class="quote" tal:content="self"></blockquote>
+<blockquote class="quote"><div tal:content="self">Citações ficam num div para que o código possa ser validado</div></blockquote>
 
 name: quotation
-<blockquote class="quotation" tal:content="self"></blockquote>
+<blockquote class="quotation"><div tal:content="self"></div></blockquote>
 
 name: verse
-<blockquote class="verse" tal:content="self"></blockquote>
+<blockquote class="verse"><div tal:content="self"></div></blockquote>
