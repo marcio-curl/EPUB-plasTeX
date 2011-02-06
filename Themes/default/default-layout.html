@@ -14,10 +14,10 @@
 <body>
 <div class="texto" tal:content="self"></div>
 
-<div id="footnotes"  tal:condition="self/ownerDocument/userdata/footnotes">
+<div id="footnotes" tal:condition="self/footnotes">
 <hr />
-<ol tal:repeat="item self/ownerDocument/userdata/footnotes">
-  <li tal:content="item" tal:attributes="id item/id"></li>
+<ol tal:repeat="item self/footnotes">
+    <li tal:content="item" tal:attributes="id item/id"></li>
 </ol>
 </div>
 </body>
