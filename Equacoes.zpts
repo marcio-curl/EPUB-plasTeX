@@ -9,13 +9,13 @@ name: math ensuremath
                                      height:${self/image/height/px}" class="math gen" /></object>
 
 name: displaymath equation equation*
-<div class="equation" tal:attributes="id self/id" cellspacing="0" cellpadding="7">
+<div class="equation" tal:attributes="id self/id">
     <object tal:omit-tag="not:self/renderer/vectorImager/enabled" type="image/svg+xml" 
             tal:attributes="data self/vectorImage/url; style string:width:${self/vectorImage/width/em};; 
                                                                     height:${self/vectorImage/height/em}"><img 
-            tal:attributes="src self/image/url; alt self/source; 
+            tal:attributes="src self/image/url; alt self/source" 
                             class="math gen" /></object>
-    <div class="eqnnum" style="width:20%"><span tal:condition="self/ref">(<span tal:content="self/ref">1.1.1</span>)</span></div>
+    <div class="eqnum" style="width:20%"><span tal:condition="self/ref">(<span tal:content="self/ref">1.1.1</span>)</span></div>
 </div>
 
 name: eqnarray eqnarray* align align* gather gather* falign falign* \
