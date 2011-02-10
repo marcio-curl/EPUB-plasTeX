@@ -20,3 +20,19 @@ em > em {
 #footnotes {
 	display: oeb-page-foot;
 }
+
+/* ------------------------------------------------------------ */
+/* Equações */
+.equation {
+    text-align: center;
+}
+
+.equation > .eqnum {
+    float: right;
+}
+
+/* ------------------------------------------------------------ */
+/* Listas */
+ol.I > li {
+    list-style-type: Roman;
+   }
