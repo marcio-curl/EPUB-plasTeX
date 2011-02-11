@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from plasTeX import Environment
+from plasTeX.Base.LaTeX.Lists import List
 
-class enumerate(Environment):
-    pass
+class enumerate(List):
+    args = "[formato:str]"

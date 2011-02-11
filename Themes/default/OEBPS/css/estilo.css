@@ -22,6 +22,7 @@ em > em {
 }
 
 /* ------------------------------------------------------------ */
+<<<<<<< HEAD
 /* EquaÃ§Ãµes */
 .equation { 
             text-align: center;
@@ -30,3 +31,19 @@ em > em {
 .equation > .eqnum { 
                      float: right;
  }
+=======
+/* Equações */
+.equation {
+    text-align: center;
+}
+
+.equation > .eqnum {
+    float: right;
+}
+
+/* ------------------------------------------------------------ */
+/* Listas */
+ol.I > li {
+    list-style-type: Roman;
+   }
+>>>>>>> 8da443cc0d06e9ae72f6d98009515a9ee9eafa32
