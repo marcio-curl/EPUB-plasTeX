@@ -9,7 +9,6 @@ name: math ensuremath
                                      height:${self/image/height/px}" class="math gen" /></object>
 
 name: displaymath equation equation*
-<<<<<<< HEAD
 type: xml
 <div class="equation">
 <object tal:omit-tag="not:self/renderer/vectorImager/enabled" type="image/svg+xml" 
@@ -18,16 +17,6 @@ type: xml
 <div class="eqnum" tal:condition="self/ref">(<span
       tal:content="self/ref">número da equação</span>)</div>
 </object>
-=======
-<div class="equation" tal:attributes="id self/id">
-    <object tal:omit-tag="not:self/renderer/vectorImager/enabled" type="image/svg+xml" 
-            tal:attributes="data self/vectorImage/url; style string:width:${self/vectorImage/width/em};; 
-                                                                    height:${self/vectorImage/height/em}"><img 
-            tal:attributes="src self/image/url; alt self/source" 
-                            class="math gen" /></object>
-    <div class="eqnum" style="width:20%"><span tal:condition="self/ref">(<span tal:content="self/ref">1.1.1</span>)</span></div>
->>>>>>> 8da443cc0d06e9ae72f6d98009515a9ee9eafa32
-</div>
 
 name: eqnarray eqnarray* align align* gather gather* falign falign* \
       multiline multiline* alignat alignat* split
