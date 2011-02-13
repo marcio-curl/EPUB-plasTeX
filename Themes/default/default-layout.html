@@ -14,6 +14,22 @@
 <body>
 <div class="texto" tal:content="self"></div>
 
+
+<div tal:condition="self/tableofcontents" tal:attributes="class string:contents ${self/nodeName}-contents">
+<ul>
+  <li tal:repeat="section self/tableofcontents"><a href="." tal:attributes="href section/url" tal:content="section/fullTocEntry">Lista de capítulos</a>
+    <ul tal:condition="section/subsections">
+      <li tal:repeat="subsection section/subsections"><a href="." tal:attributes="href subsection/url" tal:content="subsection/fullTocEntry">Lista de seções</a>
+        <ul tal:condition="subsection/subsections">
+	  <li tal:repeat="subsubsection subsection/subsections"><a href="." tal:attributes="href subsubsection/url" tal:content="subsubsection/fullTocEntry">Lista de subseções</a></li>
+	</ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+</div>
+
+
 <div id="footnotes" tal:condition="self/footnotes">
 <hr />
 <ol tal:repeat="item self/footnotes">

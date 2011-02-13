@@ -17,6 +17,7 @@ type: xml
 <div class="eqnum" tal:condition="self/ref">(<span
       tal:content="self/ref">número da equação</span>)</div>
 </object>
+</div>
 
 name: eqnarray eqnarray* align align* gather gather* falign falign* \
       multiline multiline* alignat alignat* split
