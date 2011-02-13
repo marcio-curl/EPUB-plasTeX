@@ -66,7 +66,8 @@ class WGHTML(_Renderer):
                 listaArquivos[itemid] = {'href': href, 'mediaType': mediaType}
             
         latexdoc.setUserData('listaArqs', listaArquivos)
-        latexdoc.setUserData('spine', spine)
+        # A lista de ids será ordenada para a geração do content.opf
+        latexdoc.setUserData('spine', sorted(spine))
 
         # Chamadas para geração do arquivo opf
         self.doOPFFiles(latexdoc)
