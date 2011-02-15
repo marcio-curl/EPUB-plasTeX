@@ -34,5 +34,17 @@ em > em {
 /* ------------------------------------------------------------ */
 /* Listas */
 ol.I > li {
-    list-style-type: Roman;
+    list-style-type: upper-roman;
+   }
+
+ol.i > li {
+    list-style-type: lower-roman;
+   }
+
+ol.a > li {
+    list-style-type: lower-alpha;
+   }
+
+ol.A > li {
+    list-style-type: upper-alpha;
    }
