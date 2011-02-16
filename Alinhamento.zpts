@@ -1,0 +1,7 @@
+type: xml
+
+name: center
+<div class="center" tal:content="self">Texto centralizado</div>
+
+name: flushright
+<div class="flushright" tal:content="self">Texto à direita</div>
