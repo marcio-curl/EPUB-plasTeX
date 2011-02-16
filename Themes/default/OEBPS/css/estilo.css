@@ -11,15 +11,32 @@ h1.titulo, .autor, .data {
           max-width: 100%;
 }
 
+
 /* ------------------------------------------------------------ */
-/* Texto */
-em > em {
-    font-style: normal;
+/* Blocos de texto */
+.center { 
+          text-align: center;
+ }
+
+.flushright { 
+              text-align: right;
 }
 
 #footnotes {
 	display: oeb-page-foot;
 }
+
+
+/* ------------------------------------------------------------ */
+/* Formatação do texto */
+em > em {
+    font-style: normal;
+}
+
+.underline { 
+             text-decoration: underline;
+}
+
 
 /* ------------------------------------------------------------ */
 /* Equações */
@@ -30,6 +47,7 @@ em > em {
 .equation > .eqnum {
     float: right;
 }
+
 
 /* ------------------------------------------------------------ */
 /* Listas */
