@@ -1,3 +1,4 @@
+name:tabular
 <table class="tabular" cellspacing="0">
 <tr tal:repeat="row self">
 <metal:block tal:repeat="cell row">
@@ -16,3 +17,7 @@
 </metal:block>
 </tr>
 </table>
+
+
+name: multicolumn
+<span tal:replace="self"></span>
