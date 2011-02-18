@@ -54,6 +54,9 @@ class WGHTML(_Renderer):
                 if (nomeArquivo == 'content.opf'):
                     continue
 
+                if re.match('.*~$', nomeArquivo):
+                    continue
+
                 href = os.path.join(re.sub('OEBPS/?', '', root), nomeArquivo)
                 # As / são substituídas por - no id
                 itemid = re.sub('\..*$', '', re.sub('/', '-', href))

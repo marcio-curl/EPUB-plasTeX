@@ -8,7 +8,7 @@ type:xml
 <meta name="dtb:maxPageNumber" content="0" />
 </head>
 <docTitle>
-<text tal:content="self/title/textContent">Titulo</text>
+<text tal:content="self/title/textContent">Sem título</text>
 </docTitle>
 <navMap>
 <navPoint tal:condition="not:self/tableofcontents" id="navpoint" playOrder="1">
