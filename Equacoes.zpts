@@ -3,10 +3,7 @@ name: math ensuremath
         tal:attributes="data self/vectorImage/url; style string:width:${self/vectorImage/width/em};; 
                                                                 height:${self/vectorImage/height/em};; 
                                                                 vertical-align:${self/vectorImage/depth/em}"><img 
-        tal:attributes="src self/image/url; alt self/source; 
-                        style string:vertical-align:${self/image/depth/px};; 
-                                     width:${self/image/width/px};; 
-                                     height:${self/image/height/px}" class="math gen" /></object>
+        tal:attributes="src self/image/url; alt self/source" class="math gen" /></object>
 
 name: displaymath equation equation*
 type: xml
