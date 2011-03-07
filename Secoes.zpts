@@ -2,7 +2,11 @@ name: document
 <p tal:replace="self"></p>
 
 name: part chapter
-<h1 tal:attributes="id python:self.id.replace(':', '')" tal:content="string:Capítulo ${self/ref} <br> ${self/title}">Capítulo</h1>
+<h1 tal:attributes="id python:self.id.replace(':', '')" tal:content="string:Capítulo ${self/ref} <br /> ${self/title}">Capítulo</h1>
+<p tal:replace="self"></p>
+
+name: chapter*
+<h1 tal:attributes="id python:self.id.replace(':', '')" tal:content="self/title">Capítulo sem número</h1>
 <p tal:replace="self"></p>
 
 name: section
