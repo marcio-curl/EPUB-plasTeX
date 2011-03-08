@@ -1,8 +1,19 @@
 name: document
 <p tal:replace="self"></p>
 
+name: appendix
+<p tal:replace="python: self.ownerDocument.setUserData('apendices', 1)"></p>
+
 name: part chapter
-<h1 tal:attributes="id python:self.id.replace(':', '')" tal:content="string:Capítulo ${self/ref} <br /> ${self/title}">Capítulo</h1>
+<h1 tal:condition="not:self/ownerDocument/userdata/apendices" 
+    tal:attributes="id python:self.id.replace(':', '')"
+    tal:content="string:Capítulo ${self/ref} <br /> ${self/title}">
+</h1>
+<h1 tal:condition="self/ownerDocument/userdata/apendices" 
+    tal:attributes="id python:self.id.replace(':', '')"
+    tal:content="self/fullTitle">
+</h1>
+
 <p tal:replace="self"></p>
 
 name: chapter*
