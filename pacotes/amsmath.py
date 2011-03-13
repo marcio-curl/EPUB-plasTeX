@@ -114,3 +114,5 @@ class equation(equation):
             return r'\]'
         return r'\['
 
+class eqref(Command):
+    args = 'label:idref'
