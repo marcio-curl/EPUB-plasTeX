@@ -17,7 +17,7 @@ type: xml
 </div>
 
 name: eqnarray eqnarray* align align* gather gather* falign falign* \
-      multiline multiline* alignat alignat* split
+      multiline multiline* multline multline* alignat alignat* split
 type: xml
 <table class="eqnarray" cellspacing="0" cellpadding="7" width="100%"
        tal:attributes="id self/id">
