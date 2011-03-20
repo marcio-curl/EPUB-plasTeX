@@ -7,7 +7,7 @@ name: math ensuremath
 
 name: displaymath equation equation*
 type: xml
-<div class="equation">
+<div tal:attributes="id self/id" class="equation">
 <object tal:omit-tag="not:self/renderer/vectorImager/enabled" type="image/svg+xml" 
             tal:attributes="data self/vectorImage/url">
 <img tal:attributes="src self/image/url; alt self/source" />
