@@ -5,7 +5,7 @@ name: itemize
 
 name: enumerate
 <ol class="enumerate" tal:attributes="class python:str(self.attributes['formato'])[:1]">
-<li tal:repeat="item self" tal:content="item"></li>
+<li tal:attributes="id item/id" tal:repeat="item self" tal:content="item"></li>
 </ol>
 
 name: description
