@@ -90,7 +90,8 @@ class WGHTML(_Renderer):
         s = re.compile(r'(<(td|th)\b[^>]*>)\s*(</\2>)', re.I).sub(r'\1&nbsp;\3', s)
 
         # Sem ":" nos ids
-        s = re.compile(r'id="(.*?):(.*?)"', re.I).sub(r'id="\1\2"', s)
+#        s = re.compile(r'id="(.*?):(.*?)"', re.I).sub(r'id="\1\2"', s)
+        s = re.compile(r'<(\w+) id="(.*?):(.*?)"(.*?)>', re.I | re.U).sub(r'<\1 id="\2\3"\4>', s)
 
         return s
     

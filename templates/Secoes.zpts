@@ -6,22 +6,20 @@ name: appendix
 
 name: part chapter
 <h1 tal:condition="not:self/ownerDocument/userdata/apendices" 
-    tal:attributes="id python:self.id.replace(':', '')"
     tal:content="string:Capítulo ${self/ref} <br /> ${self/title}">
 </h1>
 <h1 tal:condition="self/ownerDocument/userdata/apendices" 
-    tal:attributes="id python:self.id.replace(':', '')"
     tal:content="self/fullTitle">
 </h1>
 
 <p tal:replace="self"></p>
 
 name: chapter*
-<h1 tal:attributes="id python:self.id.replace(':', '')" tal:content="self/title">Capítulo sem número</h1>
+<h1 tal:content="self/title">Capítulo sem número</h1>
 <p tal:replace="self"></p>
 
 name: section
-<h2 tal:attributes="id python:self.id.replace(':', '')" tal:content="self/fullTitle">Título</h2>
+<h2 tal:content="self/fullTitle">Título</h2>
 <p tal:replace="self"></p>
 
 name: subsection

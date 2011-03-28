@@ -9,7 +9,7 @@ name: displaymath equation equation*
 type: xml
 <div tal:attributes="id self/id" class="equation">
 <object tal:omit-tag="not:self/renderer/vectorImager/enabled" type="image/svg+xml" 
-            tal:attributes="data self/vectorImage/url">
+            tal:attributes="data self/vectorImage/url; style string:width:${self/vectorImage/width/em};; height:${self/vectorImage/height/em};; vertical-align:${self/vectorImage/depth/em}">
 <img tal:attributes="src self/image/url; alt self/source" />
 <div class="eqnum" tal:condition="self/ref">(<span
       tal:content="self/ref">número da equação</span>)</div>
