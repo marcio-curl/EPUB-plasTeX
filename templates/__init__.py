@@ -40,6 +40,9 @@ class WGHTML(_Renderer):
         # Muda os aquivos .html para XHTML
         mimetypes.add_type('application/xhtml+xml', '.html')
 
+        # Mimetype para os arquivos SVG
+        mimetypes.add_type('image/svg+xml', '.svg')
+
         # Mimetype para fontes OpenType
         if not mimetypes.types_map.has_key('.otf'):
             mimetypes.add_type('application/vnd.ms-opentype', '.otf')
