@@ -37,15 +37,10 @@ class WGHTML(_Renderer):
         if not mimetypes.types_map.has_key('.ncx'):
             mimetypes.add_type('application/x-dtbncx+xml', '.ncx')
 
-        # Muda os aquivos .html para XHTML
+        # Mimetypes dos arquivos .html, .svg e .otf
         mimetypes.add_type('application/xhtml+xml', '.html')
-
-        # Mimetype para os arquivos SVG
         mimetypes.add_type('image/svg+xml', '.svg')
-
-        # Mimetype para fontes OpenType
-        if not mimetypes.types_map.has_key('.otf'):
-            mimetypes.add_type('application/vnd.ms-opentype', '.otf')
+        mimetypes.add_type('application/vnd.ms-opentype', '.otf')
 
         # Gera o arquivo ncx
         self.doNCXFiles(latexdoc)
@@ -62,7 +57,7 @@ class WGHTML(_Renderer):
 
                 href = os.path.join(re.sub('OEBPS/?', '', root), nomeArquivo)
                 # As / são substituídas por - no id
-                itemid = re.sub('\..*$', '', re.sub('/', '-', href))
+                itemid = re.sub('[/.]', '-', href)
                 mediaType = mimetypes.guess_type(nomeArquivo)[0]
 
                 # Os arquivos html são incluídos no spine
