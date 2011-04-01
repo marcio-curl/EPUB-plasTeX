@@ -3,4 +3,4 @@
 .\#*
 *.pyc
 __init__.pyc
-Themes/cm*
+templates/Themes/cm*
