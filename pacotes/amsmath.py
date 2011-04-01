@@ -103,6 +103,9 @@ class dddot(math):
 class ddddot(math):
     pass
 
+class dots(Command):
+    pass
+
 # "Transforma" o equation num displaymath
 class equation(equation):
     blockType = True
