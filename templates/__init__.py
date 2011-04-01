@@ -8,7 +8,7 @@ from plasTeX.Config import config
 from plasTeX.ConfigManager import *
 
 # Basicamente copiado do renderizador XHTML 
-class WGHTML(_Renderer):
+class EPUB(_Renderer):
     """ Renderizador coxa para ePUB """
 
     # Ajusta os parametros de configuração para que os arquivos sejam gerados em OEBPS/
@@ -126,4 +126,4 @@ class WGHTML(_Renderer):
             f.write(toc)
             f.close()
 
-Renderer = WGHTML
+Renderer = EPUB
