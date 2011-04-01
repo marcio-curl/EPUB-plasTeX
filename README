@@ -1,21 +1,21 @@
 EPUB-plasTeX
 
-Este È um renderzador EPUB para o framework plasTeX
-(http://plastex.sourceforge.net/). Visa a convers„o de documentos LaTeX
+Este √© um renderzador EPUB para o framework plasTeX
+(http://plastex.sourceforge.net/). Visa a convers√£o de documentos LaTeX
 para o formato de e-books EPUB (http://idpf.org/epub).
 
 
-InstalaÁ„o
+Instala√ß√£o
 
-Para instalar È preciso instalar o plasTeX e depois copiar o diretÛrio de templates para a
-estrutura de diretÛrios do plasTeX:
+Para instalar √© preciso instalar o plasTeX e depois copiar o diret√≥rio de templates para a
+estrutura de diret√≥rios do plasTeX:
 
-cp -r templates/ DIRET”RIO_DAS_BIBLIOTECAS_PYTHON/plasTeX/Renderers/EPUB
+cp -r templates/ DIRET√ìRIO_DAS_BIBLIOTECAS_PYTHON/plasTeX/Renderers/EPUB
 
-O diretÛrio pacotes contÈm implementaÁıes e versıes modificadas de
-pacotes usados para convers„o dos arquivos. Os arquivos podem ser
-copiados para o diretÛrio Packages do plasTeX ou estar acessÌvel via
-vari·vel $PYTHONPATH
+O diret√≥rio pacotes cont√©m implementa√ß√µes e vers√µes modificadas de
+pacotes usados para convers√£o dos arquivos. Os arquivos podem ser
+copiados para o diret√≥rio Packages do plasTeX ou estar acess√≠vel via
+vari√°vel $PYTHONPATH
 
 
 Uso
@@ -24,10 +24,10 @@ Para converter um arquivo LaTeX use
 
 plastex --renderer=EPUB arquivo.tex
 
-Isso vai gerar um diretÛrio chamado arquivo/ com a estrutura
-descompactada do formato EPUB. Para gerar um arquivo .epub, faÁa:
+Isso vai gerar um diret√≥rio chamado arquivo/ com a estrutura
+descompactada do formato EPUB. Para gerar um arquivo .epub, fa√ßa:
 
 cd arquivo/
 make
 
-o que gerar· o arquivo.epub um diretÛrio acima.
+o que gerar√° o arquivo.epub um diret√≥rio acima.
