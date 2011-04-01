@@ -1,0 +1,33 @@
+EPUB-plasTeX
+
+Este é um renderzador EPUB para o framework plasTeX
+(http://plastex.sourceforge.net/). Visa a conversão de documentos LaTeX
+para o formato de e-books EPUB (http://idpf.org/epub).
+
+
+Instalação
+
+Para instalar é preciso instalar o plasTeX e depois copiar o diretório de templates para a
+estrutura de diretórios do plasTeX:
+
+cp -r templates/ DIRETÓRIO_DAS_BIBLIOTECAS_PYTHON/plasTeX/Renderers/EPUB
+
+O diretório pacotes contém implementações e versões modificadas de
+pacotes usados para conversão dos arquivos. Os arquivos podem ser
+copiados para o diretório Packages do plasTeX ou estar acessível via
+variável $PYTHONPATH
+
+
+Uso
+
+Para converter um arquivo LaTeX use
+
+plastex --renderer=EPUB arquivo.tex
+
+Isso vai gerar um diretório chamado arquivo/ com a estrutura
+descompactada do formato EPUB. Para gerar um arquivo .epub, faça:
+
+cd arquivo/
+make
+
+o que gerará o arquivo.epub um diretório acima.
