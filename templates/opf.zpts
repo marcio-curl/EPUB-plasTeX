@@ -12,7 +12,7 @@ name: content-opf
 <item tal:define="listaArqs python:self.userdata['listaArqs']" tal:repeat="item python:listaArqs.keys()" tal:attributes="id item; href python:listaArqs[item]['href']; media-type python:listaArqs[item]['mediaType']"/>
 </manifest>
 
-<spine toc="toc">
+<spine toc="toc-ncx">
 <!--
 <itemref idref="cover" linear="no" />
 -->
