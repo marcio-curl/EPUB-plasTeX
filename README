@@ -11,20 +11,24 @@ Para instalar é preciso instalar o plasTeX e depois copiar o diretório de temp
 estrutura de diretórios do plasTeX. Se o diretório de instalação for 
 /usr/lib/python2.5/site-packages/ o comando será
 
-cp -r templates/ /usr/lib/python2.5/site-packages/plasTeX/Renderers/EPUB
+	cp -r templates/ /usr/lib/python2.5/site-packages/plasTeX/Renderers/EPUB
+
+Para saber onde o plasTeX se encontra instalado use o comando:
+
+	python -c "import plasTeX; print plasTeX.__path__"
 
 
 Uso
 
 Para converter um arquivo LaTeX use
 
-plastex --renderer=EPUB arquivo.tex
+	plastex --renderer=EPUB arquivo.tex
 
 Isso vai gerar um diretório chamado arquivo/ com a estrutura
 descompactada do formato EPUB. Para gerar um arquivo .epub, faça:
 
-cd arquivo/
-make
+	cd arquivo/
+	make
 
 o que gerará o arquivo.epub um diretório acima.
 
