@@ -29,5 +29,4 @@ make
 o que gerará o arquivo.epub um diretório acima.
 
 Muitos arquivos gerarão erros na conversão. Isso geralmente é devido ao uso de pacotes LaTeX que não puderam ser interpretados pelo plasTeX. O diretório pacotes/ contém implementações adicionais e versões modificadas de pacotes. Os arquivos podem ser
-copiados para o diretório Packages do plasTeX ou ficar acessíveis via
-variável $PYTHONPATH
+copiados para o diretório Packages/ do plasTeX ou o nome do diretório, junto ao seu caminho, pode ser incluído na variável $PYTHONPATH
