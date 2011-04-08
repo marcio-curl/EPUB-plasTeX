@@ -15,7 +15,7 @@
 # junto com este programa, se não, escreva para a Fundação do Software
 # Livre(FSF) Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
-import sys, os, re, codecs, mimetypes, uuid, plasTeX
+import sys, os, shutil, re, codecs, mimetypes, uuid, plasTeX
 from plasTeX.Renderers.PageTemplate import Renderer as _Renderer
 
 from plasTeX.Config import config
@@ -24,12 +24,11 @@ from plasTeX.ConfigManager import *
 # Basicamente copiado do renderizador XHTML 
 class EPUB(_Renderer):
     """ Renderizador coxa para ePUB """
-
     # Ajusta os parametros de configuração para que os arquivos sejam gerados em OEBPS/
-    config['images']['filenames'] = 'OEBPS/' + config['images']['filenames'] # Teremos problemas se usarmos multiplos templates.
+#    config['images']['filenames'] = 'OEBPS/' + config['images']['filenames'] # Teremos problemas se usarmos multiplos templates.
     # "Conserta" as URLs OEBPS/images/img-????.png
-    config['images']['base-url'] = '..'
-    
+#    config['images']['base-url'] = '..'
+
     # Extensões de arquivos utilizadas
     fileExtension = '.html'
     imageTypes = ['.png','.jpg','.jpeg','.gif']
@@ -38,9 +37,21 @@ class EPUB(_Renderer):
     def cleanup(self, document, files, postProcess=None):        
         res = _Renderer.cleanup(self, document, files, postProcess=postProcess)
 
+        # Define uma lista de arquivos que devem ficar fora de OEBPS/,
+        # e move os outros arquivos / diretórios, apagando os diretórios
+        # pré-existentes em OEBPS/
+        dirNaoMover = ['mimetype', 'OEBPS', 'META-INF', 'Makefile']
+        moverDirs = list(set(os.listdir('.')) - set(dirNaoMover))
+        for arq in moverDirs:
+            if os.path.isdir('OEBPS/%s' % arq):
+                shutil.rmtree('OEBPS/%s' % arq)
+            shutil.move(arq, 'OEBPS/%s' % arq)
+
         # Move os arquivos de conteúdo para OEBPS/
-        for arq in files:
-            os.rename(arq, 'OEBPS/' + arq)
+#        for arq in files:
+#            os.rename(arq, 'OEBPS/' + arq)
+
+        # Mover todos os arquivos e diretórios que não sejam o META-INF/, OEBPS/ e mimetype
 
         latexdoc = document.getElementsByTagName('document')[0]
 
